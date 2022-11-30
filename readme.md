@@ -31,5 +31,5 @@
 本仓库存储的教程类文件禁止未经许可的商业使用。  
 
 本仓库存储于两个代码托管平台：
-[github](https://github.com/liujitong/Program-study)
-[giteee](https://gitee.com/liujitong/Program-study)
+[github](https://github.com/liujitong/Study-Program)
+[giteee](https://gitee.com/liujitong/Study-Program)
