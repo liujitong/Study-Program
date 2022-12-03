@@ -30,8 +30,7 @@
 |时间限制|400 ms|
 |内存限制|64 MB|
 
-但是呢用例二，用例三超时了。
-所以显然这道题并不适用于循环解决这个问题。
+先用正常的思路解决：
 
 ```c
 #include<stdio.h>
@@ -55,6 +54,13 @@ int main()
     printf("%llu %d",s,n);
 }
 ```
+
+但是呢用例二，用例三超时了。
+所以显然这道题并不适用于循环解决这个问题。
+我们可以用手算除式的方法进行计算。
+思路就是模拟手算除法的过程，如下图所示（来源于CSDN帖子）：
+![思路](https://img-blog.csdn.net/20180926165751540?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JvYl9feXVhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+代码如下：
 
 ```c
 #include<stdio.h>
@@ -82,6 +88,3 @@ int main()
  return 0;
 }
 ```
-
-思路就是模拟手算除法的过程，如下图所示（来源于CSDN帖子）：
-![思路](https://img-blog.csdn.net/20180926165751540?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JvYl9feXVhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
