@@ -9,7 +9,7 @@
 
 ### [PTA](./PTA/)
 
-这个仓库主要用来存储我在PTA平台的源代码。
+PTA至40题止
 
 ### [Lanqiao](./Lanqiao/)
 
@@ -32,6 +32,6 @@
 
 本仓库存储于两个代码托管平台：
 
-[github](https://github.com/liujitong/Study-Program)
+[Github](https://github.com/liujitong/Study-Program)
 
-[gitee](https://gitee.com/liujitong/Study-Program)
+[Gitee](https://gitee.com/liujitong/Study-Program)
