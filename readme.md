@@ -1,6 +1,6 @@
 # 编程学习仓库
 
-关于代码规范化：[代码规范化](./%E6%95%99%E7%A8%8B%E7%B1%BB/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E5%8C%96%E7%BC%96%E7%A8%8B.md)
+关于本仓库所写的代码规范化：[代码规范化](./%E6%95%99%E7%A8%8B%E7%B1%BB/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E5%8C%96%E7%BC%96%E7%A8%8B.md)
 
 各位来看这个仓库的用户你们好：
 第一、本仓库并非是一个专业的开源项目
@@ -31,10 +31,18 @@
 
 网络上搜罗而来的教程和自己手打的教程，方便学习。
 
+#### [清华大学计算机系课程攻略](./%E6%95%99%E7%A8%8B%E7%B1%BB/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E8%AF%BE%E7%A8%8B%E6%94%BB%E7%95%A5/)
+
+对[清华大学计算机系课程攻略](https://github.com/Salensoft/thu-cst-cracker)的克隆版本，未对其进行二次修改
+
+#### [计算机专业书籍](./%E6%95%99%E7%A8%8B%E7%B1%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E4%B9%A6%E7%B1%8D/)
+
+对来自Github的[CS-books](https://github.com/ForthEspada/CS-Books/)仓库进行克隆，未对其进行二次修改
+
 请注意，题目的版权归原作者所有，但是本仓库存储的源代码仅供个人交流使用。
 本仓库存储的教程类文件禁止未经许可的商业使用。  
 
-文档索引(两个在GitHub上很火的开源课程攻略):[清华大学计算机系课程攻略](https://github.com/Salensoft/thu-cst-cracker),[浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles)
+文档索引(两个在GitHub上很火的开源课程攻略):[浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles)
 
 本仓库存储于两个代码托管平台：
 
