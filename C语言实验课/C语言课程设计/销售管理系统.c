@@ -195,7 +195,7 @@ int main()
 {
   Screen_Print();
   int sales[SALESMEN_COUNT][PRODUCT_COUNT] = {0};
-  while (1)
+  while (1)//设置一个死循环，这个界面只有在用户输入3的时候才会跳出循环
   {
     system("cls");
     printf("1. 输入\n");
