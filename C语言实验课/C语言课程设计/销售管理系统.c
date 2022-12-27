@@ -14,7 +14,7 @@ struct salesmen
   int total_sales;
 } salesmen[SALESMEN_COUNT];
 
-void Screen_Print() // 程序初始化界面
+void Screen_Print() // 欢迎页界面
 {
   printf("****************************\n********销售管理系统********\n********按任意键继续********\n****************************\n");
   system("Pause"); // 要展示菜单，让她暂停再继续执行
@@ -33,11 +33,21 @@ void Input(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输入界面
     {
       break;
     }
+    if (salesmen < 1 || salesmen > SALESMEN_COUNT)
+    {
+      printf("销售员编号无效，请重新输入\n");
+      continue;
+    }
     printf("请输入产品编号：");
     scanf("%d", &product);
     if (product == 0)
     {
       break;
+    }
+    if (product < 1 || product > PRODUCT_COUNT)
+    {
+      printf("产品编号无效，请重新输入\n");
+      continue;
     }
     printf("请输入销售额：");
     scanf("%d", &amount);
@@ -147,7 +157,8 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   printf("%-5d|", salesmen[0].total_sales + salesmen[1].total_sales + salesmen[2].total_sales + salesmen[3].total_sales);
   printf("\n");
   save(sales);
-  printf("已保存至baobiao.md");
+  printf("已保存至baobiao.md\n");
+  system("Pause");
 }
 void save(int sales[SALESMEN_COUNT][PRODUCT_COUNT])
 {
@@ -179,19 +190,42 @@ void save(int sales[SALESMEN_COUNT][PRODUCT_COUNT])
   fprintf(fp, "%-5d|", salesmen[0].total_sales + salesmen[1].total_sales + salesmen[2].total_sales + salesmen[3].total_sales);
   fprintf(fp, "\n");
 }
+
 int main()
 {
   Screen_Print();
   int sales[SALESMEN_COUNT][PRODUCT_COUNT] = {0};
-  Input(sales);
-  /// 计算每个销售员的总销售额
-  Total_salemen(sales);
-  // 计算每个产品的总销售额
-  Total_Product(sales);
-  // 对销售额排序
-  Sort_sales();
-  // 对产品进行排序
-  Sort_product();
-  // 输出开始
-  Output(sales);
+  while (1)
+  {
+    system("cls");
+    printf("1. 输入\n");
+    printf("2. 统计\n");
+    printf("3. 退出\n");
+    printf("请选择要执行的操作：");
+    int choice;
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+      Input(sales);
+    }
+    else if (choice == 2)
+    {
+    // 计算每个销售员的总销售额
+    Total_salemen(sales);
+    // 计算每个产品的总销售额
+    Total_Product(sales);
+    // 对销售额排序
+    Sort_sales();
+    // 对产品进行排序
+    Sort_product();
+    // 输出开始
+    Output(sales);
+    }
+    else if (choice == 3)
+    {
+      break;
+    }
+  }
+  return 0;
 }
