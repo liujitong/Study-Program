@@ -55,7 +55,6 @@ void Input(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输入界面
     sales[salesmen - 1][product - 1] += amount;
   }
 }
-
 void Total(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算总销售额
 {
   //计算每个销售员的总销售额
