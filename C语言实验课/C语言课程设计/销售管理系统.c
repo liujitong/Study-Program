@@ -55,8 +55,10 @@ void Input(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输入界面
     sales[salesmen - 1][product - 1] += amount;
   }
 }
-void Total_salemen(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算每个销售员的总销售额
+
+void Total(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算总销售额
 {
+  //计算每个销售员的总销售额
   for (int i = 0; i < SALESMEN_COUNT; i++)
   {
     for (int j = 0; j < PRODUCT_COUNT; j++)
@@ -65,10 +67,7 @@ void Total_salemen(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算每个销�
       salesmen[i].total_sales += sales[i][j];
     }
   }
-}
-void Total_Product(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算每个产品的总销售额
-{
-
+  //计算产品的总销售额
   for (int i = 0; i < PRODUCT_COUNT; i++)
   {
     for (int j = 0; j < SALESMEN_COUNT; j++)
@@ -78,8 +77,9 @@ void Total_Product(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 计算每个产�
     }
   }
 }
-void Sort_sales() // 销售员排序
+void Sort()//排序 
 {
+  // 销售员排序
   for (int i = 0; i < SALESMEN_COUNT - 1; i++)
   {
     for (int j = 0; j < SALESMEN_COUNT - 1 - i; j++)
@@ -93,9 +93,7 @@ void Sort_sales() // 销售员排序
       }
     }
   }
-}
-void Sort_product() // 产品排序
-{
+  //产品排序
   for (int i = 0; i < PRODUCT_COUNT - 1; i++)
   {
     for (int j = 0; j < PRODUCT_COUNT - 1 - i; j++)
@@ -112,7 +110,18 @@ void Sort_product() // 产品排序
 }
 void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
 {
-  // 统计及排名
+  int n;//记录用户输入数
+  // 显示选择页面
+  while(1)
+  {
+  system("cls");
+  printf("输出页面\n");
+  printf("1.输出销售员排行榜\n2.输出产品排行榜\n3.输出销售报表\n4.退出\n");
+  printf("请选择：");
+  scanf("%d",&n);
+  if(n==1)
+  {
+  //销售员排行榜
   system("cls");
   printf("销售员排行榜\n");
   printf("\n");
@@ -123,18 +132,22 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
     printf("总计销售额：%d\n", salesmen[i].total_sales);
     printf("\n");
   }
-  printf("*******************************\n请按任意键输出产品排行榜\n");
   system("Pause");
-  system("cls");
+  }
+  else if(n==2)
+  {
   // 产品排行榜
+  system("cls");
   printf("产品排行榜\n");
   for (int i = 0; i < PRODUCT_COUNT; i++)
   {
     printf("销售排行第%d名的是:\n编号:%d\n销售额:%d\n", i + 1, Product[i].id, Product[i].total_sales);
     printf("\n");
   }
-  printf("*******************************\n请按任意键输出报表\n");
   system("Pause");
+  }
+  else if(n==3)
+  {
   system("cls");
   // 销售报表
   printf("     销售报表    \n");
@@ -159,6 +172,10 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   save(sales);
   printf("已保存至baobiao.md\n");
   system("Pause");
+  }
+  else if(n==4) break;
+  else continue;
+  }
 }
 void save(int sales[SALESMEN_COUNT][PRODUCT_COUNT])
 {
@@ -211,14 +228,10 @@ int main()
     }
     else if (choice == 2)
     {
-    // 计算每个销售员的总销售额
-    Total_salemen(sales);
-    // 计算每个产品的总销售额
-    Total_Product(sales);
-    // 对销售额排序
-    Sort_sales();
-    // 对产品进行排序
-    Sort_product();
+    // 计算总销售额
+    Total(sales);
+    // 排序
+    Sort();
     // 输出开始
     Output(sales);
     }
