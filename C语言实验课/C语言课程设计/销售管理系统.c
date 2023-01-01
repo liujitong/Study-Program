@@ -176,7 +176,7 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   else continue;
   }
 }
-void save(int sales[SALESMEN_COUNT][PRODUCT_COUNT])
+void save(int sales[SALESMEN_COUNT][PRODUCT_COUNT])//保存文件
 {
   FILE *fp;
   if ((fp = fopen("baobiao.md", "wb")) == NULL)
