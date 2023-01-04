@@ -1,23 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define MAX_STUDENTS 5 // 定义最大学生人数
+//宏定义
+#define MAX_STUDENTS 50 // 定义最大学生人数
 #define PASS_MARK 60 // 定义及格分数
-#define EXCELLENT_MARK 90 // 定义优秀分数
-
-// 全班各门课程总分
-float total_marks[5];
-
-// 全班各门课程平均分
-float average_marks[5];
-
-// 全班各分数段人数
-int scores[5];
-
-//总计输入
-int sum_input;
-
+//全局变量定义
+float total_marks[5];// 全班各门课程总分
+float average_marks[5];// 全班各门课程平均分
+int scores_by_subjects[5][5] = {{0}};// 全班各分数段人数
+int sum_input=-1;//总计输入学生人数
 // 学生信息结构体
 typedef struct {
   char  id[10]; // 学号
@@ -26,10 +17,9 @@ typedef struct {
   float average; // 平均分
   int rank; // 名次
 } Student;
+Student students[MAX_STUDENTS];// 全班学生信息
 
-// 全班学生信息
-Student students[MAX_STUDENTS];
-
+//菜单区
 void WELCOME_screen()
 {
     printf("**********************************\n*****欢迎使用学生成绩管理系统*****\n*****作者：刘纪彤*****************\n**********************************\n");
@@ -44,23 +34,13 @@ void menu()
 	printf("*       3.分数段统计\n");
 	printf("*       4.不及格学生筛选\n");
 	printf("*       5.优秀学生统计\n");
-	printf("*       0.退出\n");//退出系统
+	printf("*       0.退出并保存文件\n");//退出系统
 	printf("********************************\n");
 	printf("您的选择是： ");
 }
-void Save_origin()
-{
-  FILE *fp;
-  if ((fp = fopen("data.txt", "w")) == NULL)
-  {
-    printf("不能打开文件！\n");
-  }
-  fprintf(fp,"学号\t姓名\t科目一\t\t科目二\t\t科目三\t\t科目四\t\t科目五\t\t\n");
-  for(int i=0;i<=sum_input;i++)
-  fprintf(fp,"%s\t\t%s\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t\n",students[i].id,students[i].name,students[i].marks[0],students[i].marks[1],students[i].marks[2],students[i].marks[3],students[i].marks[4]);
-  fclose(fp);
-}
-void Input_Student()
+
+//流程区
+void Input_Student()//输入学生信息
 {
 
   system("cls");
@@ -90,42 +70,45 @@ void Input_Student()
   else continue;;
   }
   sum_input=i;
-  Save_origin();
 }
-void Grade_output()
+void Grade_output()//输出成绩统计
 {
   calculate_average();
   sort_students();
-  Save_average();
   system("cls");
   printf("*****成绩统计*****\n");
   OUTPUT_GRADES();
 }
-void Grade_paragraph()
+void Grade_paragraph()//输出成绩段统计
 {
-  calculate_scores();
-  printf("分数段\t科目一\tC科目二\t科目三\t科目四\t科目五\n");
-  printf("<60\t%d\t%d\t%d\t%d\t%d\n", scores[0], scores[0], scores[0], scores[0], scores[0]);
-  printf("60-69\t%d\t%d\t%d\t%d\t%d\n", scores[1], scores[1], scores[1], scores[1], scores[1]);
-  printf("70-79\t%d\t%d\t%d\t%d\t%d\n", scores[2], scores[2], scores[2], scores[2], scores[2]);
-  printf("80-89\t%d\t%d\t%d\t%d\t%d\n", scores[3], scores[3], scores[3], scores[3], scores[3]);
-  printf(">=90\t%d\t%d\t%d\t%d\t%d\n", scores[4], scores[4], scores[4], scores[4], scores[4]);
+  system("cls");
+  // 统计全班各科目的各分数段人数
+  for (int i = 0; i < 5; i++) 
+  {
+    calculate_scores(i);
+  }
+// 打印表格
+  print_scores_table();
+  system("Pause");
 }
 void print_failed_students() // 打印不及格学生信息
 {
+  system("cls");
   printf("学号\t不及格课程\t成绩\n");
   for (int i = 0; i <= sum_input; i++) {
   for (int j = 0; j < 5; j++) {
   if (students[i].marks[j] < PASS_MARK) {
-  printf("%s\t%d\t%.1f\n", students[i].id, j + 1, students[i].marks[j]);
+  printf("%s\t科目%d\t%.1f\n", students[i].id, j + 1, students[i].marks[j]);
   }
   }
   }
+  system("Pause");
 }
 void print_excellent_students() // 打印优等生信息
 {
+  system("cls");
   printf("学号\t姓名\n");
-  for (int i = 0; i < MAX_STUDENTS; i++) {
+  for (int i = 0; i <= sum_input; i++) {
     // 满足条件1
     if (students[i].average >= 80) {
       printf("%s\t%s\n", students[i].id, students[i].name);
@@ -158,7 +141,9 @@ void print_excellent_students() // 打印优等生信息
       continue;
     }
   }
+  system("Pause");
 }
+
 //运算函数区
 
 // 计算学生的平均分
@@ -173,8 +158,8 @@ void calculate_average()
     students[i].average = sum / 5;
   }
 }
-//排序
-void sort_students() 
+
+void sort_students()//排序 
 {
   // 按平均分排序
   for (int i = 0; i <= sum_input; i++) 
@@ -205,6 +190,58 @@ void sort_students()
   }
   }
 
+void OUTPUT_GRADES()
+{
+  printf("学号\t姓名\t科目一\t科目二\t科目三\t科目四\t科目五\t平均分数\t排名\t\n");
+  for(int i=0;i<=sum_input;i++)
+  printf("%s\t%s\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%d\t\n",students[i].id,students[i].name,students[i].marks[0],students[i].marks[1],students[i].marks[2],students[i].marks[3],students[i].marks[4],students[i].average,students[i].rank);
+  system("Pause");
+}
+
+void calculate_scores(int subject)// 计算全班各分数段人数 
+{
+  for (int i = 0; i <= sum_input; i++) {
+    int mark = students[i].marks[subject];
+    if (mark < 60) {
+      scores_by_subjects[subject][0]++;
+    } else if (mark < 70) {
+      scores_by_subjects[subject][1]++;
+    } else if (mark < 80) {
+      scores_by_subjects[subject][2]++;
+    } else if (mark < 90) {
+      scores_by_subjects[subject][3]++;
+    } else {
+      scores_by_subjects[subject][4]++;
+    }
+  }
+}
+
+void print_scores_table() // 打印表格
+{
+  printf("科目\t<60\t60~69\t70~79\t80~89\t90~100\n");
+  for (int i = 0; i < 5; i++) {
+    printf("%d\t", i+1);
+    for (int j = 0; j < 5; j++) {
+      printf("%d\t", scores_by_subjects[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+//保存文件
+void Save_origin()
+{
+  FILE *fp;
+  if ((fp = fopen("data.txt", "w")) == NULL)
+  {
+    printf("不能打开文件！\n");
+  }
+  fprintf(fp,"学号\t姓名\t科目一\t\t科目二\t\t科目三\t\t科目四\t\t科目五\t\t\n");
+  for(int i=0;i<=sum_input;i++)
+  fprintf(fp,"%s\t\t%s\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t%3.1f\t\t\n",students[i].id,students[i].name,students[i].marks[0],students[i].marks[1],students[i].marks[2],students[i].marks[3],students[i].marks[4]);
+  fclose(fp);
+}
+
 void Save_average()
 {
   FILE *fp;
@@ -218,31 +255,21 @@ void Save_average()
   fclose(fp);
 }
 
-void OUTPUT_GRADES()
+void Save_paragraph()
 {
-  printf("学号\t姓名\t科目一\t科目二\t科目三\t科目四\t科目五\t平均分数\t排名\t\n");
-  for(int i=0;i<=sum_input;i++)
-  printf("%s\t%s\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%3.1f\t%d\t\n",students[i].id,students[i].name,students[i].marks[0],students[i].marks[1],students[i].marks[2],students[i].marks[3],students[i].marks[4],students[i].average,students[i].rank);
-  system("Pause");
-}
-// 计算全班各分数段人数
-void calculate_scores() 
-{
-for (int i = 0; i <= sum_input; i++) {
-for (int j = 0; j < 5; j++) {
-if (students[i].marks[j] < 60) {
-scores[0]++;
-} else if (students[i].marks[j] < 70) {
-scores[1]++;
-} else if (students[i].marks[j] < 80) {
-scores[2]++;
-} else if (students[i].marks[j] < 90) {
-scores[3]++;
-} else {
-scores[4]++;
-}
-}
-}
+  FILE *fp;
+  if ((fp = fopen("PARA.txt", "w")) == NULL)
+  {
+    printf("不能打开文件！\n");
+  }
+ fprintf(fp,"科目\t<60\t60~69\t70~79\t80~89\t90~100\n");
+  for (int i = 0; i < 5; i++) {
+    fprintf(fp,"%d\t", i+1);
+    for (int j = 0; j < 5; j++) {
+    fprintf(fp,"%d\t", scores_by_subjects[i][j]);
+    }
+    fprintf(fp,"\n");
+  }
 }
 
 //主函数
@@ -256,7 +283,7 @@ int main()
     scanf("%d",&choice);
     switch(choice)
     {
-      case 0: return 0;break;
+      case 0: goto Save;break;
       case 1: Input_Student();break;
       case 2: Grade_output();break;
       case 3: Grade_paragraph();break;
@@ -265,4 +292,10 @@ int main()
       default :continue;break;
     }
     }
+    //保存文件
+    Save:
+    Save_origin();
+    Save_average();
+    Save_paragraph();
+    return 0;
 }
