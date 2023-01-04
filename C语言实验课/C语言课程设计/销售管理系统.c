@@ -22,6 +22,7 @@ void Screen_Print() // 欢迎页界面
 void Input(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输入界面
 {
   system("cls");
+  printf("**********输入纸条**********\n");
   printf("输入0退出\n");
   while (1) // 设置一个死循环
   {
@@ -114,15 +115,19 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   while(1)
   {
   system("cls");
-  printf("输出页面\n");
-  printf("1.输出销售员排行榜\n2.输出产品排行榜\n3.输出销售报表\n4.退出\n");
+  printf("*************统计***************\n");
+	printf("*       1.输出销售员排行榜\n");
+	printf("*       2.输出产品排行榜\n");
+	printf("*       3.输出销售报表\n");
+  printf("*       4.返回菜单界面\n");
+  printf("********************************\n");
   printf("请选择：");
   scanf("%d",&n);
   if(n==1)
   {
   //销售员排行榜
   system("cls");
-  printf("销售员排行榜\n");
+  printf("**********销售员排行榜**********\n");
   printf("\n");
   for (int i = 0; i < SALESMEN_COUNT; i++)
   {
@@ -137,7 +142,7 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   {
   // 产品排行榜
   system("cls");
-  printf("产品排行榜\n");
+  printf("**********产品排行榜**********\n");
   for (int i = 0; i < PRODUCT_COUNT; i++)
   {
     printf("销售排行第%d名的是:\n编号:%d\n销售额:%d\n", i + 1, Product[i].id, Product[i].total_sales);
@@ -149,7 +154,7 @@ void Output(int sales[SALESMEN_COUNT][PRODUCT_COUNT]) // 输出界面
   {
   system("cls");
   // 销售报表
-  printf("     销售报表    \n");
+  printf("**********销售报表**********\n");
   printf("|销售员代号|1    |2    |3    |4    |5    |总和 |\n");
   for (int i = 0; i < SALESMEN_COUNT; i++)
   {
@@ -214,9 +219,11 @@ int main()
   while (1)//设置一个死循环，这个界面只有在用户输入3的时候才会跳出循环
   {
     system("cls");
-    printf("1. 输入\n");
-    printf("2. 统计\n");
-    printf("3. 退出\n");
+  printf("*************菜单***************\n");
+	printf("*       1.输入纸条\n");
+	printf("*       2.统计\n");
+	printf("*       3.退出\n");
+  printf("********************************\n");
     printf("请选择要执行的操作：");
     int choice;
     scanf("%d", &choice);
