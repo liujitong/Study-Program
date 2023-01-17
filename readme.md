@@ -47,5 +47,3 @@
 本仓库存储于两个代码托管平台：
 
 [Github](https://github.com/liujitong/Study-Program)
-
-[Gitee](https://gitee.com/liujitong/Study-Program)
