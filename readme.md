@@ -35,10 +35,6 @@
 
 对[清华大学计算机系课程攻略](https://github.com/Salensoft/thu-cst-cracker)的克隆版本，未对其进行二次修改
 
-#### [计算机专业书籍](./%E6%95%99%E7%A8%8B%E7%B1%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%93%E4%B8%9A%E4%B9%A6%E7%B1%8D/)
-
-对来自Github的[CS-books](https://github.com/ForthEspada/CS-Books/)仓库进行克隆，未对其进行二次修改
-
 请注意，题目的版权归原作者所有，但是本仓库存储的源代码仅供个人交流使用。
 本仓库存储的教程类文件禁止未经许可的商业使用。  
 
