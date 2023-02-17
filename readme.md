@@ -9,19 +9,19 @@
 
 ## 本文件索引
 
-### [Leetcode](./Leetcode/)
+### [CODE](./CODE/)
+
+#### [Leetcode](./CODE//Leetcode/)
 
 力扣社区题目
 
-### [PTA](./PTA/)
-
-### [Lanqiao](./Lanqiao/)
+#### [Lanqiao](./CODE/Lanqiao/)
 
 这个仓库主要存储蓝桥杯大赛的重要题目的源代码和分析
 
-### [Daily](./Daily/)
+#### [LUOGU](./CODE/LUOGU/)
 
-本仓库则是日常一些代码的集合
+洛谷社区
 
 ### [图床](./%E5%9B%BE%E5%BA%8A/)
 
