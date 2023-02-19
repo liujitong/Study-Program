@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main()
 {
-	int score;//ÉùÃ÷³É¼¨
+	int score;
 	scanf("%d",&score);
     switch (score/10)
     {
@@ -18,4 +18,4 @@ int main()
 }
 					 
 	return 0;
- } //2022212080Áõ¼ÍÍ® 
+ }
