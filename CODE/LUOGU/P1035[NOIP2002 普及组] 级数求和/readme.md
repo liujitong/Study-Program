@@ -35,25 +35,3 @@
 
 **【题目来源】**
 NOIP 2002 普及组第一题
-
-## 代码如下
-
-C++语言编写，非标准答案，仅供参考交流
-
-```C++
-#include<iostream>
-int main()
-{
-    int k;
-    std::cin>>k;
-    double S_n=0.0;
-    int i;
-    for(i=1;;i++)
-    {
-        S_n+=1.0*1/i;
-        if(S_n>k) break;
-    }
-    std::cout<<i<<std::endl;
-    return 0;
-}
-```
