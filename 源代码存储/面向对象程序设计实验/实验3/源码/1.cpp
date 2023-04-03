@@ -1,7 +1,6 @@
-
 #include<iostream>
 using namespace std;
-//i. ¶¨ÒåÒ»¸ö»ùÀàÔ²£¬ÖÁÉÙº¬ÓĞÒ»¸öÊı¾İ³ÉÔ±°ë¾¶£»
+//i. å®šä¹‰ä¸€ä¸ªåŸºç±»åœ†ï¼Œè‡³å°‘å«æœ‰ä¸€ä¸ªæ•°æ®æˆå‘˜åŠå¾„ï¼›
 class circle
 {
 protected:
@@ -16,7 +15,7 @@ public:
         return r;
     }
 };
-//ii. ¶¨Òå»ùÀàµÄÅÉÉúÀàÇò¡¢Ô²Öù¡¢Ô²×¶£¬¶¼º¬ÓĞÇóÌå»ıµÄ³ÉÔ±º¯ÊıºÍÊä³öº¯Êı¡£
+//ii. å®šä¹‰åŸºç±»çš„æ´¾ç”Ÿç±»çƒã€åœ†æŸ±ã€åœ†é”¥ï¼Œéƒ½å«æœ‰æ±‚ä½“ç§¯çš„æˆå‘˜å‡½æ•°å’Œè¾“å‡ºå‡½æ•°ã€‚
 class ball:public circle
 {
 public:
@@ -29,7 +28,7 @@ public:
     }
     void print()
     {
-        cout<<"ÇòµÄÌå»ıÎª£º"<<getv()<<endl;
+        cout<<"çƒçš„ä½“ç§¯ä¸ºï¼š"<<getv()<<endl;
     }
 };
 class cylinder:public circle
@@ -47,7 +46,7 @@ public:
     }
     void print()
     {
-        cout<<"Ô²ÖùµÄÌå»ıÎª£º"<<getv()<<endl;
+        cout<<"åœ†æŸ±çš„ä½“ç§¯ä¸ºï¼š"<<getv()<<endl;
     }
 };
 class cone:public circle
@@ -65,10 +64,10 @@ public:
     }
     void print()
     {
-        cout<<"Ô²×¶µÄÌå»ıÎª£º"<<getv()<<endl;
+        cout<<"åœ†é”¥çš„ä½“ç§¯ä¸ºï¼š"<<getv()<<endl;
     }
 };
-//iii. ¶¨ÒåÖ÷º¯Êı£¬ÇóÇò¡¢Ô²Öù¡¢Ô²×¶µÄÌå»ı¡£
+//iii. å®šä¹‰ä¸»å‡½æ•°ï¼Œæ±‚çƒã€åœ†æŸ±ã€åœ†é”¥çš„ä½“ç§¯ã€‚
 int main()
 {
     ball b(2);
@@ -79,4 +78,3 @@ int main()
     co.print();
     return 0;
 }
-
