@@ -17,7 +17,7 @@ class Leopard:public Animal
 {
     public:
     void Sound()
-    {
+    {   
         cout<<"啊！"<<endl;
     }
 };
