@@ -23,7 +23,7 @@ class mysting
         strcpy(pstr,"");
     }
     //拷贝构造函数
-    mysting(mysting &x)
+    mysting(const mysting &x)
     {
         length=x.length;
         pstr=new char[length+1];

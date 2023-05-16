@@ -17,7 +17,7 @@ class complex
         image=0;
     }
     //拷贝构造函数
-    complex(complex &x)
+    complex(const complex &x)
     {
         real=x.real;
         image=x.image;
