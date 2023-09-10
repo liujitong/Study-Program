@@ -38,6 +38,7 @@ class complex
         temp.image=image-x.image;
         return temp;
     }
+    //complex1=complex2-complex3;
     //前置自增运算符
     complex& operator++()
     {
