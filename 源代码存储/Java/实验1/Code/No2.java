@@ -6,28 +6,32 @@ public class No2{
 		double x1 , x2;
 		Scanner scan = new Scanner (System.in);
 		System.out.println("请输入一元二次方程的三个系数");
+		//设置三个系数的输入
 		a = scan.nextDouble();
 		b = scan.nextDouble();
 		c = scan.nextDouble();
-		delta = b * b - 4 * a * c;
+		delta = b * b - 4 * a * c;//计算二次方程的判别式
 		p = -b / ( 2 * a ) ;
-		q = Math.sqrt(Math.abs(delta)) / (2 * a);
+		q = Math.sqrt(Math.abs(delta)) / (2 * a);//根号下的delta
 		if(a== 0.0){
 			System.out.println("二次方的系数为零，不是一个二次方程");
 			
 		}
-		else if (delta > 0.0){
+		else if (delta > 0.0)//根的判别式大于零
+		{
 			x1 = p + q;
 			x2 = p - q;
 			System.out.println("方程有两个不等的实根");
 			System.out.printf("x1=%.2f,x2=%.2f\n",x1,x2);
 		}
-		else if(delta == 0.0){
+		else if(delta == 0.0)
+		{
 			x1 = x2 = p;
 			System.out.println("方程有两个相等的实根");
 			System.out.printf("x1 = x2 =%.2f\n",x1);
 		}
-		else{
+		else
+		{
 			System.out.println("方程有两个复根");
 			System.out.printf("x1=%.2f%+.2fi,",p,q);
 			System.out.printf("x2=%.2f%+.2fi",p,-q);

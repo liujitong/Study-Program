@@ -10,7 +10,7 @@ public class No4 {
         y=sc.nextInt();
         m=sc.nextInt();
         d=sc.nextInt();
-        if((y%4==0&&y%100!=0)||y%400==0)
+        if((y%4==0&&y%100!=0)||y%400==0)//判断闰年
         {
             day[1]=29;
         }
