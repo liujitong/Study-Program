@@ -1,2 +1,0 @@
-部署说明:
-与ppt中描述的相同，将forindex文件夹拷到tomcat的bin目录下
