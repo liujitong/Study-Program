@@ -1,3 +1,4 @@
+package 源代码存储.Java.实验1.Code;
 public class No3 {
 	public static void main(String[] args) {
 	for(int i=0;i<9;i++)//横行

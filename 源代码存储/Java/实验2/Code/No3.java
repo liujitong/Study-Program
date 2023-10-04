@@ -1,3 +1,4 @@
+package 源代码存储.Java.实验2.Code;
 import java.util.Scanner;
 
 public class No3 {

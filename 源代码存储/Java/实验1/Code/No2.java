@@ -1,3 +1,4 @@
+package 源代码存储.Java.实验1.Code;
 import java.util.*;
 public class No2{
 	public static void main(String[] args){
