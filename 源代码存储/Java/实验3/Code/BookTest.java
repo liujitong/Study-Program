@@ -25,22 +25,22 @@ public class BookTest
         {
             System.out.println(book[i]);
         }
-        SortByprice(book,0,j-1);
+        SortByprice(book,0,j);
         for(int i=0;i<j;i++)
         {
             System.out.println(book[i]);
         }
         System.out.println("查谁");
-        searchByAuthor(book,sc.next(),j);
+        searchByAuthor(book,sc.next(),j-1);
         sc.close();
     }
-    public static void SortByprice(Book[] book,int s,int e)
+    public static Book[] SortByprice(Book[] book,int s,int e)
     {
-        if (s >= e) return;
+        if (s >= e) return book;
         int i = s, j = e;
         double pivot = book[s].price;
         Book pivot1=book[s];
-        while (i < j) {
+        while (i !=j ) {
             while (i < j && book[i].price <= pivot) {
                 i++;
             }
@@ -53,10 +53,11 @@ public class BookTest
                 book[j] = temp;
             }
         }
-        book[s] = book[i];
-        book[i] = pivot1;
-        SortByprice(book, s, i - 1);
-        SortByprice(book, i + 1, e);
+         book[s] = book[i];
+         book[i] = pivot1;
+            SortByprice(book, s, i - 1);  
+            SortByprice(book, i + 1, e);  
+        return book;
     }
     public static void searchByAuthor(Book[] book,String author,int length)
     {
