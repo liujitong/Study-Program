@@ -52,6 +52,7 @@ public class Circle implements IShape{
     {
         this.posx=posx;
         this.posy=posy;
+        System.out.println("圆心被移动到了"+"("+posx+","+posy+")");
     }//移动图形到指定的位置
     @Override
     public void zoom(double i)
@@ -60,3 +61,4 @@ public class Circle implements IShape{
     }    //对图形进行缩放，缩放比例i>0
 
 }
+
