@@ -21,7 +21,7 @@ public class Triangle implements IShape{
         p2=new Point(p2x,p2y);
         p3=new Point(p3x,p3y);
         avx=(p1x+p2x+p3x)/3;
-        avy=(p1x+p2x+p3x)/3;
+        avy=(p1y+p2y+p3y)/3;
     }
     public void set_p1(double x,double y)
     {
