@@ -1,17 +1,19 @@
 package 源代码存储.Java.Java_homework_1;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class hw7 {
     public static void main(String[] args) {
-  
-      try {
-        devision(0);
-     }catch(ArithmeticException e1){
-        System.out.println("算数异常"+e1.getMessage());
-     }   
-    }
-    static void devision(int c) throws ArithmeticException
-    {
-            int a=100/c;
-            System.out.println("100/c="+a);
+        int[] nums=new int[10];
+        Random rd=new Random();
+        for(int i=0;i<10;i++)
+        {  
+            nums[i]=rd.nextInt(90)+10;
+        }
+        Arrays.sort(nums);
+        for (int i=0;i<10;i++) {
+            System.out.print(nums[i]+"  ");
+        }
     }
 }

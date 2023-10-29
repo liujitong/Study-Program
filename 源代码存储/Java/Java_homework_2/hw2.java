@@ -1,4 +1,4 @@
-package 源代码存储.Java.Java_homework_1;
+package 源代码存储.Java.Java_homework_2;
 public class hw2 {
     public static void main(String[] args) {
         try{
