@@ -39,7 +39,3 @@
 本仓库存储的教程类文件禁止未经许可的商业使用。  
 
 文档索引(两个在GitHub上很火的开源课程攻略):[浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles)
-
-本仓库存储于两个代码托管平台：
-
-[Github](https://github.com/liujitong/Study-Program)
