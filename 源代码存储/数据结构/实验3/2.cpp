@@ -54,8 +54,8 @@ void printHaffman(Haffman* root,string code="")//最后会返回一个
         cout << root->data << ": " << code << endl;
     }
     //左子树和右子树递归
-    printHaffman(root->left,code+="0");//左加零
-    printHaffman(root->right,code+="1");//右加一
+    printHaffman(root->left,code+"0");//左加零
+    printHaffman(root->right,code+"1");//右加一
 }
 
 
