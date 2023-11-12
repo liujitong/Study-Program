@@ -2,7 +2,7 @@ package 源代码存储.Java.实验7.Code;
 
 import java.util.Date;
 
-public class Book {  
+public class Book{  
     private String bID;  
     private String bName;  
     private String author;  
@@ -52,10 +52,10 @@ public class Book {
     public void setPublishDate(Date publishDate) {  
         this.publishDate = publishDate;  
     }  
-  
     // toString方法，用于打印书籍信息  
     @Override  
     public String toString() {  
         return "Book [bID=" + bID + ", bName=" + bName + ", author=" + author + ", publishDate=" + publishDate + "]";  
-    }  
+    }
+
 }

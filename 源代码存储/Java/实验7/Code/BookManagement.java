@@ -42,16 +42,18 @@ public class BookManagement {
         Collections.sort(bookList, Comparator.comparing(Book::getbID)); //调用排序算法 
         for (int i = 0; i < bookList.size(); i++) {  
             bookMap.put(bookList.get(i).getbID(), bookList.get(i));  
-        }  
+        }
+        for(Book bk:bookList) System.out.println(bk);
     }  
   
     // 根据书名排序书籍信息  
-    public void searchBookByName() {  
+    public void sortBookByName() {  
         List<Book> bookList = new ArrayList<>(bookMap.values());  
         Collections.sort(bookList, Comparator.comparing(Book::getbName));  
         for (int i = 0; i < bookList.size(); i++) {  
             bookMap.put(bookList.get(i).getbID(), bookList.get(i));  
         }  
+        for(Book bk:bookList) System.out.println(bk);
     }  
   
     // 打印所有书籍信息  

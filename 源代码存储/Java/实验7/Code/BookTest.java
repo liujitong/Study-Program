@@ -19,14 +19,15 @@ public class BookTest {
         bookManagement.printBooksInfo(); // 打印所有书籍信息  
   
         // 根据ID排序  
-        bookManagement.sortBooksByID();  
+
         System.out.println("After sorting by ID:");  
-        bookManagement.printBooksInfo();  
-  
+          bookManagement.sortBooksByID();  
         // 根据书名排序  
-        bookManagement.searchBookByName();  
+  
         System.out.println("After sorting by Name:");  
-        bookManagement.printBooksInfo(); 
-        System.out.println("调用查找算法"+(bookManagement.searchBookByName("《Java程序设计》"))); 
+        bookManagement.sortBookByName();
+        //查找
+        System.out.println("调用查找算法"+(bookManagement.searchBookByName("《Java程序设计》")));
+        System.out.println("调用查找算法"+(bookManagement.searchBookByID("9875632")));  
     }  
 }
