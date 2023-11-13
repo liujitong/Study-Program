@@ -4,6 +4,8 @@ public class CarSell {
     String SaleCode;
     String CarID;
     String buyerCode;
+    public CarSell(){
+    }
     public CarSell(String saleCode, String carID, String buyerCode) {
         SaleCode = saleCode;
         CarID = carID;
@@ -32,5 +34,14 @@ public class CarSell {
 
     public void setBuyerCode(String buyerCode) {
         this.buyerCode = buyerCode;
+    }
+
+    @Override
+    public String toString() {
+        return "CarSell{" +
+                "订单编号='" + SaleCode + '\'' +
+                ", 车辆编号='" + CarID + '\'' +
+                ", 买家编号='" + buyerCode + '\'' +
+                '}';
     }
 }
