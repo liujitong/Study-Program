@@ -1,87 +1,114 @@
-#include<stdio.h>  
-#include<malloc.h>  
-#define ERROR 0  
-#define OK 1  
-#define STACK_INT_SIZE 10  /*存储空间初始分配量*/  
-#define STACKINCREMENT 5  /*存储空间分配增量*/  
-typedef  int ElemType; /*定义元素的类型*/  
-typedef struct{  
-    ElemType *base;  
-    ElemType *top;  
-    int stacksize;     /*当前已分配的存储空间*/  
-}SqStack;  
-  
-int InitStack(SqStack *S);   /*构造空栈*/  
-int push(SqStack *S,ElemType e); /*入栈*/  
-int Pop(SqStack *S,ElemType *e);  /*出栈*/  
-int CreateStack(SqStack *S);     /*创建栈*/  
-void PrintStack(SqStack *S);   /*出栈并输出栈中元素*/  
-  
-int InitStack(SqStack *S){  
-    S->base=(ElemType *)malloc(STACK_INT_SIZE *sizeof(ElemType));  
-    if(!S->base) return ERROR;  
-    S->top=S->base;  
-    S->stacksize=STACK_INT_SIZE;  
-    return OK;  
-}/*InitStack*/  
-  
-int Push(SqStack *S,ElemType e){  
-    if(S->top == S->base + S->stacksize) {  // 检查栈是否已满  
-        S->base = (ElemType *)realloc(S->base, (S->stacksize + STACKINCREMENT) * sizeof(ElemType));  // 重新分配更多的内存  
-        if(!S->base) return ERROR;  // 如果内存分配失败，返回错误  
-        S->top = S->base + S->stacksize;  // 更新栈顶指针  
-        S->stacksize += STACKINCREMENT;  // 更新栈的容量  
-    }  
-    *S->top = e;  // 将元素放入栈顶  
-    S->top++;  // 更新栈顶指针  
-    return OK;  
-}/*Push*/  
-  
-int Pop(SqStack *S,ElemType *e){  
-    if(S->top == S->base) return ERROR;  // 检查栈是否已空  
-    *e = *--S->top;  // 取出栈顶元素并赋值给e  
-    return OK;  
-}/*Pop*/  
-  
-int CreateStack(SqStack *S){  
-    int e;  
-    if(InitStack(S))  
-        printf("Init Success!\n");  
-    else{  
-        printf("Init Fail!\n");  
-        return ERROR;  
-    }  
-    printf("input data:(Terminated by inputing a character)\n");  
-    while(scanf("%d",&e))  
-        Push(S,e);  
-    return OK;  
-}/*CreateStack*/  
-  
-void PrintStack(SqStack *S){  
-    ElemType e;  
-    while(Pop(S,&e))  
-        printf("%d ",e);  // 这里应该是%d而不是%3d，因为我们需要打印整数，没有指定宽度  
-}/*Pop_and_Print*/  
+#include<stdio.h>
+#include<malloc.h>
+#define ERROR 0
+#define OK 1
 
-void TRANSFER_10_to_2(int n)
-{
-    printf("INPUT 2 NUM\n");
-    SqStack sq;
-    InitStack(&sq);
-    while(n!=0)
-    {
-    Push(&sq,n%2);
-    n=n/2;
+#define INIT_SIZE 5     /*初始分配的顺序表长度*/
+#define INCREM 5        /*溢出时，顺序表长度的增量*/
+typedef  int ElemType;  /*定义表元素的类型*/
+typedef struct Sqlist{
+	ElemType *slist;      /*存储空间的基地址*/
+	int length;           /*顺序表的当前长度*/
+	int listsize;         /*当前分配的存储空间*/
+}Sqlist;
+
+int InitList_sq(Sqlist *L); /* 构造一个空的线性表L                          */
+int CreateList_sq(Sqlist *L,int n); /*将一个线性表L重置为一个空表*/
+int ListInsert_sq(Sqlist *L,int i,ElemType e);/* 在线性表中i位置插入一个数据类型为e的数据，                */
+int PrintList_sq(Sqlist *L);  /*输出顺序表的元素*/
+int ListDelete_sq(Sqlist *L,int i); /*删除第i个元素*/
+int ListLocate(Sqlist *L,ElemType e); /*查找值为e的元素*/
+
+int InitList_sq(Sqlist *L){
+    L->slist=(ElemType*)malloc(INIT_SIZE*sizeof(ElemType));
+    if(!L->slist) return ERROR; //判断创建空间是否完成
+    L->length=0;                     
+    L->listsize=INIT_SIZE;           
+    return OK;                   
+}/*InitList*/
+
+int CreateList_sq(Sqlist *L,int n){
+    ElemType e;
+    int i;
+    for(i=0;i<n;i++){
+        printf("input data %d：",i+1);
+        scanf("%d",&e);
+        if(!ListInsert_sq(L,i+1,e))
+            return ERROR;
     }
-    while(Pop(&sq,&n)) printf("%d",n);
+    return OK;
+}/*CreateList*/
+
+/*输出顺序表中的元素*/
+int PrintList_sq(Sqlist *L){
+    int i;
+    for(i=1;i<=L->length;i++)
+        printf("%5d",L->slist[i-1]);
+    return OK;
+}/*PrintList*/
+
+int ListInsert_sq(Sqlist *L,int i,ElemType e){
+    int k;
+if(i<1||i>L->length+1) 
+return ERROR;    
+if(L->length>=L->listsize){  
+L->slist=(ElemType*)realloc(L->slist,
+(INIT_SIZE+INCREM)*sizeof(ElemType));
+        if(!L->slist) 
+return ERROR; 
+L->listsize+=INCREM;                
+}//扩充
+    for(k=L->length-1;k>=i-1;k--){         
+        L->slist[k+1]= L->slist[k];
+    }
+    L->slist[i-1]=e;                     
+    L->length++;                         
+    return OK;
+}/*ListInsert*/
+int ListDelete_sq(Sqlist *L,int i){/*在顺序表中删除第i个元素*/
+int k;
+if(i<1||i>L->listsize)
+return ERROR;
+for(k=i-1;k<L->length;k++){
+L->slist[k]=L->slist[k+1];
 }
-int main(){  
-    // SqStack ss;  
-    // printf("\n1-createStack\n");  
-    // CreateStack(&ss);  
-    // printf("\n2-Pop&Print\n");  
-    // PrintStack(&ss); 
-    //10转2
-    TRANSFER_10_to_2(10);
-    return 0;  
+L->length--;
+return OK;
 }
+/*在顺序表中查找指定值元素，返回其序号*/
+int ListLocate(Sqlist *L,ElemType e){    
+int i;
+for(i=0;i<L->length;i++){
+if(L->slist[i]==e)
+return i+1;
+}
+}
+int main(){
+    Sqlist sl;
+    int n,m,k;
+    printf("please input n:");  /*输入顺序表的元素个数*/
+    scanf("%d",&n);
+    if(n>0){
+        printf("\n1-Create Sqlist:\n");
+        InitList_sq(&sl);
+        CreateList_sq(&sl,n);
+        printf("\n2-Print Sqlist:\n");
+        PrintList_sq(&sl);
+        printf("\nplease input insert location and data:(location,data)\n");
+	    scanf("%d,%d",&m,&k);
+	    ListInsert_sq(&sl,m,k);
+	    printf("\n3-Print Sqlist:\n");
+	    PrintList_sq(&sl);
+	    printf("\n");
+        //NO2测试
+        printf("\nWHERE do you want to delete\n");
+        int t;
+        scanf("%d",&t);
+	     ListDelete_sq(&sl,t);
+	    printf("\n");
+        printf("\n4-Print Sqlist:\n");
+	    PrintList_sq(&sl);
+	    printf("\n");
+        }
+    else   printf("ERROR");return 0;
+    }
