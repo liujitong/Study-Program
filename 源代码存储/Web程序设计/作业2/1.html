@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+</head>
+<body>
+    <h1>用户注册</h1>
+    <p>
+        <label for="username">用户名：</label>
+        <input type="text" id="username" name="username">*
+    </p>
+    <p>
+        <label for="psw">密码：</label>
+        <input type="password" id="psw" name="psw">*
+    </p>
+    <p>
+        <label for="psw2">确认密码：</label>
+        <input type="password" id="psw2" name="psw2">*
+    </p>
+    <p>
+        <label for="sex">性别：<label>
+        <input type="radio" name="sex" value="1" checked="checked"/>男</label>
+        <label><input type="radio" name="sex" value="0" />女</label>
+    </p>
+    <p>
+        <label for="email">邮箱：</label>
+        <input type="email" id="email" name="email">*
+    </p>
+    <p>
+        <label for="identify">身份</label>
+        <select name="identify" id="identify">
+            <option value="student">学生</option>
+            <option value="teacher">教师</option>
+            <option value="other">其他</option> 
+        </select>
+    </p>
+    <p>
+        <label  for="Introduct_to_self" >自我介绍：</label>
+        <textarea name="Introduct_to_self" id="Introduct_to_self" cols="30" rows="10"></textarea>
+    </p>
+    <p>
+        <input type="submit" value="提交">
+        <input type="reset" value="取消">
+    </p>
+</body>
+
+</html>
