@@ -63,6 +63,64 @@
 
 ### 解题思路
 
+先进行状态定义，定义 `dfs(i,j,k)`表示，A从(i,j)出发，B从(i,k)出发，到达最后一行所能够获得的最大樱桃数目。A和B均有三种情况，分别是向左、向右、向下，也就是有了9种情况，我们可以用一个三维数组 `dfs(i,j,k)`来存储
+
+得到他的状态转移方程如下所示：
+
+$$
+dfs(i,j,k)=val+ max \begin{cases}
+dfs(i+1,j−1,k−1),dfs(i+1,j−1,k),dfs(i+1,j−1,k+1),\\
+dfs(i+1,j,k−1),dfs(i+1,j,k),dfs(i+1,j,k+1),\\
+dfs(i+1,j+1,k−1),dfs(i+1,j+1,k),dfs(i+1,j+1,k+1)
+\end{cases}
+$$
+
+其中的 `val = grid[i][j] + grid[i][k](j!=k)`或 `val=gird[i][j](j==k)`，表示当前位置的所能采摘的樱桃数目。
+
+同时做好出界判定，我们就对所有出界情况返回0，同时作为递归的终止条件。
+
+为了降低时间复杂度，我们可以通过存储已经遍历过的数组来减少大量不需要的重复计算，达到降低时间复杂度的效果。
+
+### 代码实现
+
+```cpp
+class Solution {
+public:
+    int dfs(vector<vector<vector<int>>>& memo, vector<vector<int>>& grid, int i,
+            int j, int k) {
+        int m = grid.size(), n = grid[0].size();
+        // 越界处理
+        if (i == m || j < 0 || j >= n || k < 0 || k >= n)
+            return 0;
+        int& res = memo[i][j][k];
+        if (res != -1)
+            return res;
+        for (int j2 = j - 1; j2 <= j + 1; j2++) {
+            for (int k2 = k - 1; k2 <= k + 1; k2++) {
+                res = max(res, dfs(memo, grid, i + 1, j2, k2)); // 递归求解
+            }
+        }
+        res += grid[i][j];
+        if (k == j)
+            return res;
+        else {
+            res += grid[i][k];
+            return res;
+        }
+    }
+    int cherryPickup(vector<vector<int>>& grid) {
+
+        vector<vector<vector<int>>> memo(
+            grid.size(), vector<vector<int>>(
+                             grid[0].size(),
+                             vector<int>(grid[0].size(), -1))); //-1表示没有记忆
+        return dfs(memo, grid, 0, 0, grid[0].size() - 1);
+    }
+};
+```
+
+代码时间复杂度为O(mn^2)，空间复杂度为O(mn^2)。因为状态共mn^2种，每种状态只计算一次，所以时间复杂度为O(mn^2)。存储需要存储mn^2种状态，所以空间复杂度为O(mn^2)。
+
 ## [2957.](https://leetcode.cn/problems/remove-adjacent-almost-equal-characters/)[消除相邻近似相等字符](https://leetcode.cn/problems/remove-adjacent-almost-equal-characters/)
 
 ### 问题描述
@@ -105,7 +163,7 @@
 
 ### 解题思路
 
-第一步创建初始数组，那么我们就设置一个dp数组用来存储次数，dp[i]就表示消除前i个字符中所有相邻的近似相等字符的最小操作次数。
+先确定状态定义：创建初始数组，那么我们就设置一个dp数组用来存储次数，dp[i]就表示消除前i个字符中所有相邻的近似相等字符的最小操作次数。
 
 确定状态转移方程：
 
@@ -117,6 +175,8 @@ $$
 当word[i]和word[i-1]近似相等之时，我们选择消除word[i-1]，保证了他与word[i-2]、word[i]互不相等，加上原有次数后dp[i] = dp[i-2] + 1，再进行继续搜索操作。直到整个字符串被遍历完毕。
 
 对于初始状态的dp[0]，我们置零，对于dp[1]我们按照上述规则，如果0和1近似相等，我们就置dp[1] = 1，否则dp[1] = 0。
+
+### 代码实现
 
 ```cpp
 class Solution {
@@ -145,6 +205,8 @@ public:
     }
 };
 ```
+
+### 代码优化
 
 在这串代码中我们不难发现，其时间、空间复杂度均达到了O(n),再观察发现，我们并不需要存储所有的dp数组，我们只需要存储dp[i-2]和dp[i-1]即可，所以我们可以将空间复杂度降低到O(1)。
 
@@ -180,3 +242,7 @@ public:
 ```
 
 此时的空间复杂度就降低到了O(1)
+
+## 总结
+
+本次算法设计课程设计，我们通过两道题目的实现，对动态规划算法有了更深一步的理解，同时也对如何使用动态规划解决一些问题有了一定认识，动态规划的大致思路就是找到状态定义，找到状态转移方程，然后通过递归或者迭代的方式进行求解，同时我们也可以通过存储已经遍历过的数组来减少大量不需要的重复计算，达到降低时间复杂度的效果。参考示例一，我们可以看到，我们通过存储已经遍历过的数组，将时间复杂度从O(3^n)降低到了O(n^3)，这就是动态规划所带来的好处。
