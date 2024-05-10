@@ -1,0 +1,20 @@
+h1{
+    font-size: 32px;
+    color: #666;
+    text-align: center;
+    text-decoration-line:underline;
+}
+p{
+    font-size: 14px;
+    line-height: 180%;
+    text-indent: 2em;
+}
+em{
+    font-style: italic;
+    background-color: #ddd;
+}
+abbr{
+    font-size: 28px;
+    color: blue;
+    font-weight:bold;
+}

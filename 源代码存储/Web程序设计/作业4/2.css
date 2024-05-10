@@ -1,0 +1,11 @@
+strong{
+    font-size: larger;
+    color:#af3a0b;
+}
+em{
+    font-size: smaller;
+}
+.del{
+    color: #7b7b7b;
+    text-decoration: line-through;
+}

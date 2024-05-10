@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    font-size: 32px;
+    color: #006cff;
+    .author{
+        font-size: 16px;
+        color: #a0a0a0;
+    }
+}
+p{
+    font-size: 14px;
+    text-indent: 2em;
+    strong{
+        font-size: 25px;
+        color: #e84163;
+    }
+    em{
+        font-style: italic;
+        font-size: 25px;
+        color: #f89f02;
+    }
+}
+.Last_paragrafh{
+    text-decoration-line:underline;
+    font-size: 16px;
+    color: #36920b;
+}

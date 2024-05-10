@@ -1,0 +1,17 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+    th, td{
+        border: 1px solid #a0b261;
+        border-collapse: collapse;
+    }
+    thead{
+        color:white;
+        border: 1px solid #a0b261;
+        border-collapse: collapse;
+        background-color: #a7c940;
+    }
+    .even{
+        background-color: #ebf2d0;
+    }
+}
