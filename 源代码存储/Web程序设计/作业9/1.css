@@ -1,0 +1,12 @@
+.btn{
+    width: 219px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 30px;
+    font-weight: 400;
+    border: 0;
+    outline: 0;
+    background-image: url(login-btn.png);
+    
+}

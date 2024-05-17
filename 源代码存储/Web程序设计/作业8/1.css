@@ -1,12 +1,33 @@
-.btn{
-    width: 219px;
-    padding: 0 20px;
-    font-size: 16px;
-    color: #fff;
-    line-height: 30px;
-    font-weight: 400;
-    border: 0;
-    outline: 0;
-    background-image: url(login-btn.png);
-    
-}
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+  body{
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+  }
+  .box1{
+    margin: 20px 20px 0px 20px;
+    padding: 10px;
+    border-style: none;
+    width: 20em;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    color: white;
+    background-color:#6EC884;
+    text-align: center;
+  }
+  .box2{
+    margin: 0px 20px 20px 20px;
+    padding: 10px;
+    border-style: none;
+    background-color: #F8FFFA;
+    text-align: center;
+    width: 20em;
+    color:#6EC884;
+  
+  }
+  .data{
+    font-size: 40px;
+  }
