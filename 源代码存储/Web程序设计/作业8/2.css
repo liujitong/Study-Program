@@ -1,0 +1,12 @@
+.add{
+    width: 100px;
+    color: #9a9a9a;
+    /*在文字左侧添加图标*/
+    background-image: url(add.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 30px;
+    /*设置边框*/
+    border: 1px solid #ccc;
+
+}
