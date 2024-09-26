@@ -8,6 +8,7 @@
 #include "Digital_imageDlg.h"
 #include "afxdialogex.h"
 #include "Exp1.h"
+#include "Exp2.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,6 +73,7 @@ BEGIN_MESSAGE_MAP(CDigitalimageDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CDigitalimageDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDCANCEL, &CDigitalimageDlg::OnBnClickedCancel)
 	ON_BN_CLICKED(IDOK, &CDigitalimageDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_BUTTON2, &CDigitalimageDlg::OnBnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -197,4 +199,15 @@ void CDigitalimageDlg::OnBnClickedOk()
 	dlg.DoModal();
 
 	
+}
+
+
+void CDigitalimageDlg::OnBnClickedButton2()
+{
+	Exp2 dlg;
+	INT_PTR res = dlg.DoModal();
+	if (res == IDOK)
+	{
+	}
+	// TODO: 在此添加控件通知处理程序代码
 }
