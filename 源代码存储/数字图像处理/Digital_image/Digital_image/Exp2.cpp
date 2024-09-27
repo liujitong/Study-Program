@@ -2,13 +2,16 @@
 //
 
 #include "pch.h"
+#include "resource.h"
 #include "Digital_image.h"
 #include "afxdialogex.h"
 #include "Exp2.h"
 
-//读取BMP格式图片
 static BOOL ReadBmpImage(CString FileName, std::vector<std::vector<std::vector<BYTE>>>& pic, long& h, long& w)
 {
+	//先重新将pic置空
+	pic.clear();
+	//读取BMP文件
 	char bm[2];
 	short bit;
 	CFile file;
@@ -49,7 +52,6 @@ static BOOL ReadBmpImage(CString FileName, std::vector<std::vector<std::vector<B
 	file.Close(); //关闭文件
 	return TRUE;
 }
-
 //显示图片
 static void DispColorImage(CDC* pDC, const std::vector<std::vector<std::vector<BYTE>>>& pic, long h, long w)
 {
@@ -61,7 +63,6 @@ static void DispColorImage(CDC* pDC, const std::vector<std::vector<std::vector<B
 		}
 	}
 }
-
 //显示灰度图片
 static void DispGreyImage(CDC* pDC, const std::vector<std::vector<BYTE>>& pic, long h, long w)
 {
@@ -73,6 +74,7 @@ static void DispGreyImage(CDC* pDC, const std::vector<std::vector<BYTE>>& pic, l
 		}
 	}
 }
+
 
 // Exp2 对话框
 
@@ -95,44 +97,20 @@ void Exp2::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(Exp2, CDialogEx)
-	ON_BN_CLICKED(IDC_OPEN, &Exp2::OnBnClickedOpen)
-	ON_BN_CLICKED(IDC_Grey, &Exp2::OnBnClickedGrey)
-	ON_BN_CLICKED(IDC_Reserve, &Exp2::OnBnClickedReserve)
-	ON_BN_CLICKED(IDC_Power_Change, &Exp2::OnBnClickedPowerChange)
-	ON_BN_CLICKED(IDC_SLi, &Exp2::OnBnClickedSli)
-	ON_BN_CLICKED(IDC_up, &Exp2::OnBnClickedup)
-	ON_BN_CLICKED(IDC_down, &Exp2::OnBnClickeddown)
-	ON_NOTIFY(NM_CUSTOMDRAW, IDC_Power_No, &Exp2::OnNMCustomdrawPowerNo)
+	ON_BN_CLICKED(IDC_SY2_OPEN, &Exp2::OnBnClickedSy2Open)
+	ON_BN_CLICKED(IDC_SY2_Grey, &Exp2::OnBnClickedSy2Grey)
+	ON_BN_CLICKED(IDC_SY2_Reserve, &Exp2::OnBnClickedSy2Reserve)
+	ON_BN_CLICKED(IDC_SY2_Power_Change, &Exp2::OnBnClickedSy2PowerChange)
+	ON_BN_CLICKED(IDC_SY2_SLi, &Exp2::OnBnClickedSy2Sli)
+	ON_BN_CLICKED(IDC_SY2_Balance, &Exp2::OnBnClickedSy2Balance)
+	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SY2_Power_No, &Exp2::OnNMCustomdrawSy2PowerNo)
 END_MESSAGE_MAP()
 
-BOOL Exp2::OnInitDialog()
-{
-	CDialogEx::OnInitDialog();
-	// 滑动框初始化
-//设置滑动范围(0.05-25)
-	CSliderCtrl* pSlider = (CSliderCtrl*)GetDlgItem(IDC_Power_No);
-	pSlider->SetRange(4, 2500);
-	//设置初始值
-	pSlider->SetPos(150);
-	//设置滑动条的刻度
-	pSlider->SetTicFreq(1);
-	//设置步长
-	pSlider->SetLineSize(1);
-	// TODO:  在此添加额外的初始化
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	// 异常: OCX 属性页应返回 FALSE
-}
-
-// Exp2 消息处理程序
-
-
-void Exp2::OnBnClickedOpen()
-{
+void Exp2::OnBnClickedSy2Open() {
 	CFileDialog dlg(TRUE);
 	if (dlg.DoModal() == IDOK) //定义打开文件对话框对象
 	{
-		CDC* p = GetDlgItem(IDC_image2)->GetDC(); //获取图像框句柄
+		CDC* p = GetDlgItem(IDC_SY2_image2)->GetDC(); //获取图像框句柄
 		long h, w;
 		//获取图像路径和文件名
 		CString fileN = dlg.GetPathName();
@@ -145,20 +123,19 @@ void Exp2::OnBnClickedOpen()
 		DispColorImage(p, pic, h, w); //定义CDC类指针指向图像框
 		ReleaseDC(p);
 	}
-	// TODO: 在此添加控件通知处理程序代码
+
 }
 
-
-void Exp2::OnBnClickedGrey()
+void Exp2::OnBnClickedSy2Grey()
 {
-	//如果pic没有数据，返回，并弹窗：请先打开图片
 	if (pic.size() == 0)
 	{
 		MessageBox(_T("请先打开图片"));
 		return;
 	}
+	pic1.clear();
 	//将图片转化为灰度图
-	CDC* p = GetDlgItem(IDC_image2)->GetDC(); //获取图像框句柄
+	CDC* p = GetDlgItem(IDC_SY2_image2)->GetDC(); //获取图像框句柄
 	long h = pic[0].size(), w = pic[0][0].size();
 	//初始化pic1
 	pic1.resize(h, std::vector<BYTE>(w));
@@ -179,17 +156,15 @@ void Exp2::OnBnClickedGrey()
 	// TODO: 在此添加控件通知处理程序代码
 }
 
-
-void Exp2::OnBnClickedReserve()
+void Exp2::OnBnClickedSy2Reserve()
 {
-	//如果pic1没有数据，返回，并弹窗：请先转化为灰度图
 	if (pic1.size() == 0)
 	{
 		MessageBox(_T("请先转化为灰度图"));
 		return;
 	}
 	//获取图像框句柄
-	CDC* p = GetDlgItem(IDC_image2)->GetDC();
+	CDC* p = GetDlgItem(IDC_SY2_image3)->GetDC();
 	long h = pic1.size(), w = pic1[0].size();
 	std::vector<std::vector<BYTE>> pic2 = pic1;
 	//反转变化
@@ -203,25 +178,24 @@ void Exp2::OnBnClickedReserve()
 	DispGreyImage(p, pic2, h, w);
 	ReleaseDC(p);
 
+	// TODO: 在此添加控件通知处理程序代码
 }
 
-
-void Exp2::OnBnClickedPowerChange()
+void Exp2::OnBnClickedSy2PowerChange()
 {
-	//如果pic1没有数据，返回，并弹窗：请先转化为灰度图
 	if (pic1.size() == 0)
 	{
 		MessageBox(_T("请先转化为灰度图"));
 		return;
 	}
 	//获取图像框句柄
-	CDC* p = GetDlgItem(IDC_image2)->GetDC();
+	CDC* p = GetDlgItem(IDC_SY2_image1)->GetDC();
 	long h = pic1.size(), w = pic1[0].size();
 	std::vector<std::vector<BYTE>> pic2 = pic1;
 	//对图像进行幂次变换
 	//幂次选择文本框中的值
 	CString str;
-	GetDlgItemText(IDC_EDIT1, str);
+	GetDlgItemText(IDC_SY2_EDIT1, str);
 	double power = _ttof(str);
 	//幂次变换
 	for (int y = 0; y < h; y++)
@@ -234,111 +208,171 @@ void Exp2::OnBnClickedPowerChange()
 	//显示图像
 	DispGreyImage(p, pic2, h, w);
 	ReleaseDC(p);
+	// TODO: 在此添加控件通知处理程序代码
 }
 
-
-void Exp2::OnBnClickedSli()
+void Exp2::OnBnClickedSy2Sli()
 {
-	//如果pic1没有数据，返回，并弹窗：请先转化为灰度图
 	if (pic1.size() == 0)
 	{
 		MessageBox(_T("请先转化为灰度图"));
 		return;
 	}
 	//获取图像框句柄
-	CDC* p = GetDlgItem(IDC_image2)->GetDC();
+	CDC* p = GetDlgItem(IDC_SY2_image4)->GetDC();
 	long h = pic1.size(), w = pic1[0].size();
 	std::vector<std::vector<BYTE>> pic2 = pic1;
+	double a;
+	double b;
+	double c;
+	double d;
+	//获取IDC_EDIT_A的值
+	a = GetDlgItemInt(IDC_SY2_EDIT_A);
+	//获取IDC_SY2EDIT_B的值
+	b = GetDlgItemInt(IDC_SY2_EDIT_B);
+	//获取IDC_SY2EDIT_C的值
+	c = GetDlgItemInt(IDC_SY2_EDIT_C);
+	//获取IDC_SY2EDIT_D的值
+	d = GetDlgItemInt(IDC_SY2_EDIT_D);
 	//对图像进行分段线性变换
-	if (up_clicked) {
-		double a = 80.0;
-		double b = 160.0;
-		double c = 40.0;
-		double d = 200.0;
-		//分段线性变换
-		for (int y = 0; y < h; y++)
+	for (int y = 0; y < h; y++)
+	{
+		for (int x = 0; x < w; x++)
 		{
-			for (int x = 0; x < w; x++)
+			if (pic1[y][x] >= 0 && pic1[y][x] < a)
 			{
-				if (pic1[y][x] >= 0 && pic1[y][x] < a)
-				{
-					pic2[y][x] = pic1[y][x] * b / a;
-				}
-				else if (pic1[y][x] >= a && pic1[y][x] < b)
-				{
-					pic2[y][x] = (d - c) / (b - a) * (pic1[y][x] - a) + c;
-				}
-				else if (pic1[y][x] >= b && pic1[y][x] <= 255)
-				{
-					pic2[y][x] = (255 - d) / (255 - b) * (pic1[y][x] - b) + d;
-				}
+				pic2[y][x] = pic1[y][x] * b / a;
+			}
+			else if (pic1[y][x] >= a && pic1[y][x] < b)
+			{
+				pic2[y][x] = (d - c) / (b - a) * (pic1[y][x] - a) + c;
+			}
+			else if (pic1[y][x] >= b && pic1[y][x] <= 255)
+			{
+				pic2[y][x] = (255 - d) / (255 - b) * (pic1[y][x] - b) + d;
 			}
 		}
-	}
-	else if (down_clicked) {
-		double a = 40.0;
-		double b = 200.0;
-		double c = 80.0;
-		double d = 160.0;
-		//分段线性变换
-		for (int y = 0; y < h; y++)
-		{
-			for (int x = 0; x < w; x++)
-			{
-				if (pic1[y][x] >= 0 && pic1[y][x] < a)
-				{
-					pic2[y][x] = pic1[y][x] * b / a;
-				}
-				else if (pic1[y][x] >= a && pic1[y][x] < b)
-				{
-					pic2[y][x] = (d - c) / (b - a) * (pic1[y][x] - a) + c;
-				}
-				else if (pic1[y][x] >= b && pic1[y][x] <= 255)
-				{
-					pic2[y][x] = (255 - d) / (255 - b) * (pic1[y][x] - b) + d;
-				}
-			}
-		}
-	}
-	else {
-		//弹窗提示你未选择上升或下降
-		MessageBox(_T("请选择上升或下降"));
-
 	}
 	//显示灰度图像
 	DispGreyImage(p, pic2, h, w);
 	ReleaseDC(p);
+
+	// TODO: 在此添加控件通知处理程序代码
 }
 
-
-void Exp2::OnBnClickedup()
+//灰度直方图计算
+static void GetHist(std::vector<std::vector<BYTE>>& pic, int hd[256])
 {
-	//设置up_clicked和down_clicked
-	up_clicked = true;
-	down_clicked = false;
+	//获取直方图
+	for (int i = 0; i < 256; i++)
+	{
+		hd[i] = 0;
+	}
+	for (int y = 0; y < pic.size(); y++)
+	{
+		for (int x = 0; x < pic[0].size(); x++)
+		{
+			hd[pic[y][x]]++;
+		}
+	}
 }
 
-
-void Exp2::OnBnClickeddown()
+void Exp2::OnBnClickedSy2Balance()
 {
-	//设置up_clicked和down_clicked
-	up_clicked = false;
-	down_clicked = true;
+	if (pic1.size() == 0)
+	{
+		MessageBox(_T("请先转化为灰度图"));
+		return;
+	}
+	//统计每个灰度级的像素个数
+	int hd[256];
+	GetHist(pic1, hd);
+	//统计每个灰度出现的概率
+	double p[256];
+	for (int i = 0; i < 256; i++)
+	{
+		p[i] = hd[i] / (pic1.size() * pic1[0].size() * 1.0);
+	}
+	//计算累积概率
+	double c[256];
+	c[0] = p[0];
+	for (int i = 1; i < 256; i++)
+	{
+		c[i] = c[i - 1] + p[i];
+	}
+	//计算均衡化后的灰度值
+	int h[256];
+	for (int i = 0; i < 256; i++)
+	{
+		h[i] = 255 * c[i] + 0.5;
+	}
+	std::vector<std::vector<BYTE>> pic2 = pic1;
+	//直方图均衡化, 更新原图每个点的像素值
+	for (int y = 0; y < pic1.size(); y++)
+	{
+		for (int x = 0; x < pic1[0].size(); x++)
+		{
+			pic2[y][x] = h[pic1[y][x]];
+		}
+	}
+	//显示均衡化后的图像
+	CDC* pd = GetDlgItem(IDC_SY2_image1)->GetDC();
+	DispGreyImage(pd, pic2, pic1.size(), pic1[0].size());
+
+	//获取均衡化后的直方图
+	int hd2[256];
+	GetHist(pic2, hd2);
+
+	//绘制直方图
+	CDC* p_pre = GetDlgItem(IDC_SY2_image3)->GetDC();//获取图像框句柄，这是绘制的是之前的灰度图
+	CDC* p_aft = GetDlgItem(IDC_SY2_image4)->GetDC();//获取图像框句柄，这里绘制的是均衡化后的灰度图
+	//绘制直方图
+	CPen pen(PS_SOLID, 1, RGB(0, 0, 0));
+	CPen pen2(PS_SOLID, 1, RGB(255, 0, 0));
+	p_pre->SelectObject(&pen);
+	p_aft->SelectObject(&pen2);
+	for (int i = 0; i < 256; i++)
+	{
+		p_pre->MoveTo(i, 255);
+		p_pre->LineTo(i, 255 - hd[i]);
+		p_aft->MoveTo(i, 255);
+		p_aft->LineTo(i, 255 - hd2[i]);
+	}
+	ReleaseDC(p_pre);
+	ReleaseDC(p_aft);
+	ReleaseDC(pd);
+	// TODO: 在此添加控件通知处理程序代码
 }
 
 
-void Exp2::OnNMCustomdrawPowerNo(NMHDR* pNMHDR, LRESULT* pResult)
+void Exp2::OnNMCustomdrawSy2PowerNo(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
 	// TODO: 在此添加控件通知处理程序代码
 	*pResult = 0;
 	//将滑动条的值显示在编辑框中，并保留两位小数
-	CSliderCtrl* pSlider = (CSliderCtrl*)GetDlgItem(IDC_Power_No);
+	CSliderCtrl* pSlider = (CSliderCtrl*)GetDlgItem(IDC_SY2_Power_No);
 	double value = pSlider->GetPos() / 100.0;
 	CString str;
 	str.Format(_T("%.2f"), value);
-	SetDlgItemText(IDC_EDIT1, str);
+	SetDlgItemText(IDC_SY2_EDIT1, str);
 }
 
 
-
+BOOL Exp2::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+	// TODO:  在此添加额外的初始化
+	// 滑动框初始化
+	//设置滑动范围(0.05-25)
+	CSliderCtrl* pSlider = (CSliderCtrl*)GetDlgItem(IDC_SY2_Power_No);
+	pSlider->SetRange(4, 2500);
+	//设置初始值
+	pSlider->SetPos(150);
+	//设置滑动条的刻度
+	pSlider->SetTicFreq(1);
+	//设置步长
+	pSlider->SetLineSize(1);
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// 异常: OCX 属性页应返回 FALSE
+}
