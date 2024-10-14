@@ -39,6 +39,9 @@
     <ClInclude Include="Exp2.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Exp3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Digital_image.cpp">
@@ -54,6 +57,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Exp2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
