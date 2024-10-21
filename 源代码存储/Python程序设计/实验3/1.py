@@ -12,6 +12,3 @@ for i in range(1000, 10000):
             result.append(i)
 print(count)
 print(result)
-
-            
-    
