@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Digital_image", "Digital_image\Digital_image.vcxproj", "{E75E540C-2C2C-47E8-8A5C-638C89FC2A35}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "digtal_image", "..\..\..\..\we will study\数字图像处理\digtal_image\digtal_image\digtal_image\digtal_image.vcxproj", "{F2F56A73-2EF9-4F58-99E3-1BE297864105}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,14 +21,6 @@ Global
 		{E75E540C-2C2C-47E8-8A5C-638C89FC2A35}.Release|x64.Build.0 = Release|x64
 		{E75E540C-2C2C-47E8-8A5C-638C89FC2A35}.Release|x86.ActiveCfg = Release|Win32
 		{E75E540C-2C2C-47E8-8A5C-638C89FC2A35}.Release|x86.Build.0 = Release|Win32
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Debug|x64.ActiveCfg = Debug|x64
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Debug|x64.Build.0 = Debug|x64
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Debug|x86.ActiveCfg = Debug|Win32
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Debug|x86.Build.0 = Debug|Win32
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Release|x64.ActiveCfg = Release|x64
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Release|x64.Build.0 = Release|x64
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Release|x86.ActiveCfg = Release|Win32
-		{F2F56A73-2EF9-4F58-99E3-1BE297864105}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

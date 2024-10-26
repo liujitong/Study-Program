@@ -10,6 +10,10 @@
 #include "Exp1.h"
 #include "Exp2.h"
 #include "Exp3.h"
+#include "Exp4.h"
+#include "Exp5.h"
+#include "Exp6.h"
+#include "Exp7.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,6 +80,10 @@ BEGIN_MESSAGE_MAP(CDigitalimageDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CDigitalimageDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON2, &CDigitalimageDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CDigitalimageDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CDigitalimageDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON5, &CDigitalimageDlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON6, &CDigitalimageDlg::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON7, &CDigitalimageDlg::OnBnClickedButton7)
 END_MESSAGE_MAP()
 
 
@@ -218,6 +226,51 @@ void CDigitalimageDlg::OnBnClickedButton2()
 void CDigitalimageDlg::OnBnClickedButton3()
 {
 	Exp3 dlg;
+	INT_PTR res = dlg.DoModal();
+	if (res == IDOK)
+	{
+	}
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CDigitalimageDlg::OnBnClickedButton4()
+{
+	Exp4 dlg;
+	INT_PTR res = dlg.DoModal();
+	if (res == IDOK)
+	{
+	}
+
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CDigitalimageDlg::OnBnClickedButton5()
+{
+	Exp5 dlg;
+	INT_PTR res = dlg.DoModal();
+	if (res == IDOK)
+	{
+	}
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CDigitalimageDlg::OnBnClickedButton6()
+{
+	Exp6 dlg;
+	INT_PTR res = dlg.DoModal();
+	if (res == IDOK)
+	{
+	}
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CDigitalimageDlg::OnBnClickedButton7()
+{
+	Exp7 dlg;
 	INT_PTR res = dlg.DoModal();
 	if (res == IDOK)
 	{

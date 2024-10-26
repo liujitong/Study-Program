@@ -42,6 +42,18 @@
     <ClInclude Include="Exp3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Exp4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Exp5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Exp6.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Exp7.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Digital_image.cpp">
@@ -60,6 +72,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Exp3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp6.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp7.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

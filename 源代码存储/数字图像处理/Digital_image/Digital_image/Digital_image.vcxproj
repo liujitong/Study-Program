@@ -88,7 +88,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -188,6 +188,10 @@
     <ClInclude Include="Exp1.h" />
     <ClInclude Include="Exp2.h" />
     <ClInclude Include="Exp3.h" />
+    <ClInclude Include="Exp4.h" />
+    <ClInclude Include="Exp5.h" />
+    <ClInclude Include="Exp6.h" />
+    <ClInclude Include="Exp7.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -199,6 +203,10 @@
     <ClCompile Include="Exp1.cpp" />
     <ClCompile Include="Exp2.cpp" />
     <ClCompile Include="Exp3.cpp" />
+    <ClCompile Include="Exp4.cpp" />
+    <ClCompile Include="Exp5.cpp" />
+    <ClCompile Include="Exp6.cpp" />
+    <ClCompile Include="Exp7.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
