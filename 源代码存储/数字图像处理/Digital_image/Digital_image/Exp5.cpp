@@ -233,22 +233,38 @@ void Exp5::OnBnClickedSy5xiangqian()
 	long w = pic[0][0].size();
 	//获取镶嵌区域长度
 	long xiangqianLength = GetDlgItemInt(IDC_SY5_mohudaxiao);
+	float g[3];
 	//处理
-	for (int y = xiangqianLength; y < h - xiangqianLength; y++)
+	for (int y = xiangqianLength; y < h - xiangqianLength; y += xiangqianLength)
 	{
-		for (int x = xiangqianLength; x < w - xiangqianLength; x++)
+		for (int x = xiangqianLength; x < w - xiangqianLength; x += xiangqianLength)
 		{
-			for (int k = 0; k < 3; k++)
+			g[0] = 0;
+			g[1] = 0;
+			g[2] = 0;
+			for (int i = -xiangqianLength; i <= xiangqianLength; i++)
 			{
-				int sum = 0;
-				for (int i = -xiangqianLength; i <= xiangqianLength; i++)
+				for (int j = -xiangqianLength; j <= xiangqianLength; j++)
 				{
-					for (int j = -xiangqianLength; j <= xiangqianLength; j++)
+					for (int k = 0; k < 3; k++)
 					{
-						sum += pic[k][y + i][x + j];
+						g[k] += pic[k][y + j][x + i];
 					}
 				}
-				xiangqianPic[k][y][x] = sum / ((2 * xiangqianLength + 1) * (2 * xiangqianLength + 1));
+			}
+			for (int k = 0; k < 3; k++)
+			{
+				g[k] /= (2 * xiangqianLength + 1) * (2 * xiangqianLength + 1);
+			}
+			for (int i = -xiangqianLength; i <= xiangqianLength; i++)
+			{
+				for (int j = -xiangqianLength; j <= xiangqianLength; j++)
+				{
+					for (int k = 0; k < 3; k++)
+					{
+						xiangqianPic[k][y + j][x + i] = static_cast<BYTE>(g[k]);
+					}
+				}
 			}
 		}
 	}

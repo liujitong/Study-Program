@@ -332,8 +332,8 @@ void Exp4::OnBnClickedSy4tuchu()
     int max_value = Max(p2);
     r.left = 0;
     r.right = pic1[0].size() - 1;
-    r.top = max_value - 15;
-    r.bottom = max_value + 15;
+    r.top = max_value - 2;
+    r.bottom = max_value + 2;
     DispGrayImage1(pDC1, pic1, max_value, pic1[0].size());
     std::vector<int> q2;
     VDifferentialProjection(pic1, r, q2);
