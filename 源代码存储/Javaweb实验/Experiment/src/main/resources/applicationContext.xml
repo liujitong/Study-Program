@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注解配置 -->
+    <context:annotation-config/>
+    <context:component-scan base-package="xyz.mlxkj"/>
+
+
+
+    <!-- 构造方法创建Bean -->
+    <bean id="student1" class="xyz.mlxkj.model.Student">
+        <constructor-arg value="1"/>
+        <constructor-arg value="John Doe"/>
+        <constructor-arg value="20"/>
+    </bean>
+
+    <!-- 静态工厂方法创建Bean（需要自定义工厂类） -->
+    <bean id="student2" class="xyz.mlxkj.factory.StudentFactory" factory-method="createStudent">
+        <constructor-arg value="2"/>
+        <constructor-arg value="Jane Doe"/>
+        <constructor-arg value="22"/>
+    </bean>
+
+    <!-- 实例工厂方法创建Bean（需要自定义工厂类） -->
+    <bean id="studentFactory" class="xyz.mlxkj.factory.StudentFactoryInstance"/>
+    <bean id="student3" factory-bean="studentFactory" factory-method="createStudentInstance">
+        <constructor-arg value="3"/>
+        <constructor-arg value="Sam Smith"/>
+        <constructor-arg value="21"/>
+    </bean>
+
+    <!-- StudentFactoryBean方法创建-->
+    <bean id="student4" class="xyz.mlxkj.factory.StudentFactoryBean"/>
+
+    <!-- 班级对象注入学生集合数据（通过注解方式） -->
+    <bean id="student5" class="xyz.mlxkj.model.Student">
+        <constructor-arg value="4"/>
+        <constructor-arg value="Tom Smith"/>
+        <constructor-arg value="19"/>
+    </bean>
+
+
+    <!-- 班级对象注入学生集合数据 -->
+    <bean id="classroom" class="xyz.mlxkj.model.Classroom">
+        <property name="className" value="Math 101"/>
+        <property name="students">
+            <list>
+                <ref bean="student1"/>
+                <ref bean="student2"/>
+                <ref bean="student3"/>
+                <ref bean="student4"/>
+                <ref bean="student5"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 学生对象自动装配班级对象（通过byName方式，假设在Student类中有setClassroom方法） -->
+    <!-- 注意：这里需要调整Student类，添加一个setClassroom方法，并且确保Spring容器中有名为classroom的Bean -->
+    <bean id="studentAutoWire" class="xyz.mlxkj.model.Student" autowire="byName">
+        <constructor-arg value="5"/>
+        <constructor-arg value="Auto Wired Student"/>
+        <constructor-arg value="18"/>
+        <!-- 注意：这里不需要显式设置classroom属性，因为会通过byName自动装配 -->
+    </bean>
+</beans>

@@ -1,11 +1,11 @@
-package xyz.mlxkj.Exp1.model;
+package xyz.mlxkj.model;
 
 import java.util.List;
 
 public class Classroom {
     private Long id;
-    private String name;
-    private List<Student> students;
+    private String className;
+    private List<Student> students; // 学生集合
 
     // Getters and Setters
     public Long getId() {
@@ -16,12 +16,12 @@ public class Classroom {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public List<Student> getStudents() {
@@ -30,5 +30,14 @@ public class Classroom {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "id=" + id +
+                ", className='" + className + '\'' +
+                ", students=" + students +
+                '}';
     }
 }
